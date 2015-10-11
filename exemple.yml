@@ -1,0 +1,96 @@
+SiteAA:
+  bin:
+    Hostnames:
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    Password: pass
+    Receivers:
+    - test@test.fr
+  games:
+    Hostnames:
+    - machine6
+    - machine4
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+    - test3@test
+    - test4@test
+  include:
+    Hostnames:
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+    - test3@test
+    - test4@test
+  src:
+    Hostnames:
+    - machine6
+    - machine4
+    Password: pass
+    Receivers:
+    - moi@local
+  tmp:
+    Hostnames:
+    - machine6
+    - machine4
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+SiteAB: {}
+SiteAD:
+  bin:
+    Hostnames:
+    - machine6
+    - machine4
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+    - test3@test
+    - test4@test
+  games:
+    Hostnames:
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+    - test3@test
+    - test4@test
+  include:
+    Hostnames:
+    - machine1
+    - machine2
+    - machine3
+    - machine4
+    - machine5
+    Password: pass
+    Receivers:
+    - test@test
+    - test2@test
+SiteE: {}

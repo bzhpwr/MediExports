@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if session.logged_in %}
+    {#
+    <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>Sites:
+        <select name="Site">
+          {% for site in l_sites %} 
+          <dd><option value="{{ site }}">{{ site }}</option>
+          {% endfor %}
+        </select>
+        <dt>Dossier:
+        <select name="Folder">
+          {% for line in l_folders %}
+          <dd><option value="{{ line }}">{{ line }}</option>
+          {% endfor %}
+        </select>
+        <dt>Mot de passe: <input type=password size=16 name=Password required>
+        <dt>Destination(s):
+        <ul>Separer par des virgules</ul>
+        <dd><input type=text size=30 name=Hostnames multiple required>
+        <dt>Email(s): 
+        <ul>Separer par des virgules</ul>
+        <dd><input type=email size=50 name=Receivers multiple required>
+        <dd><input type=submit value=Valider>
+      </dl>
+    </form>
+  #} 
+  <table class="tableau">
+    <tr>
+      <th>Dossier</th>
+      <th>Mot de passe</th>
+      <th>Destinations</th>
+      <th>Utilisateur</th>
+      <th></th>
+    </tr>
+  <form action="{{ url_for('del_entry') }}" method=post class=add-entry > 
+  <input type=Submit value="Retirer le dossier selectionner" align="right">
+  {% for key,entry in d_folders.items() %}
+    <tr>
+      <td>{{ entry.Folder }}</td> 
+      <td>{{ entry.Password }}</td>
+      <td>{{ entry.Hostnames }}</td>
+      <td>{{ entry.Receivers }}</td>
+      <td><input type=radio name="Folder" value={{ key }}></td> 
+    </tr>
+  {% endfor %}
+</table>
+  <input type=Submit value="Retirer le dossier selectionner" >
+  </form>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,66 @@
+<!doctype html>
+<title>MediExport</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<div class=page>
+  <h1>MediExport</h1>
+  <div class=metanav>
+    {% if not session.logged_in %}
+      <div>
+      <a class=cnx href="{{ url_for('login') }}">Connexion</a>
+    </div>
+    {% else %}
+      <a href="{{ url_for('logout') }}">Deconnexion</a>
+    {% endif %}
+  </div>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {# <ul class=flashes> #}
+      {% for category, message in messages %}
+        <div class="{{ category }}">{{ message }}</div>
+      {% endfor %}
+      {# </ul> #}
+    {% endif %}
+  {% endwith %}
+
+{% if session.logged_in %}
+  <ul class=Sites>
+  <li><a href="{{ url_for('show_entries') }}">Gestion des sites</a></li>
+  {% if l_sites|length <= 10 %} 
+    {% for id_site,site in l_sites|dictsort(True, 'value') %}
+      {% if id_site != 0 %}
+        {% if site == path %}
+             <li class=h><a href="{{ site }}" class=h>{{ site }}</a></li>
+        {% else %}
+          <li><a href="{{ site }}">{{ site }}</a></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% else %}
+    </ul>
+    <ul class=Sites>
+    {% for id_site,site in l_sites|dictsort(false, 'key') %}
+      {% if id_site != 0 and id_site < 16 %}
+        {% if site == path %}
+             <li class=h><a href="{{ site }}" class=h>{{ site }}</a></li>
+        {% else %}
+          <li><a href="{{ site }}">{{ site }}</a></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+    </ul>
+    <ul class=Sites>
+    {% for id_site,site in l_sites|dictsort(false, 'key') %}
+      {% if id_site > 15 %}
+        {% if site == path %}
+             <li class=h><a href="{{ site }}" class=h>{{ site }}</a></li>
+        {% else %}
+          <li><a href="{{ site }}">{{ site }}</a></li>
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+  </ul>
+{% endif %}
+{% block body %}{% endblock %}
+</div>
+
