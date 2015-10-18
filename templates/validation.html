@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row">
+  <div class="large-12 columns">
+    <form action="{{ url_for('del_site') }}" method=post>
+      <fieldset>
+        <legend>Confirmation: </legend>
+        <div class="row">
+          <div class="large-8 medium-6 columns" >
+            <label>Etes-vous sur de vouloir supprimer le site {{ Site }} ?</label>
+            <button class="small alert button" type="submit" name="Site" value={{ Site }}>Valider
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>
+{% endblock content %}   

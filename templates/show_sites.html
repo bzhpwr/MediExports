@@ -27,8 +27,7 @@
 </div>
 <div class="row">
   <div class="large-12 medium-12 columns">
-    <form action="{{ url_for('del_site') }}" method=post > 
-      <table class="responsive">
+      <table role="grid" >
         <thead>
           <tr>
             <th width="200">Site</th>
@@ -41,16 +40,14 @@
           {% for id_site,Site in l_sites|dictsort(True, 'key') %}
           {# {% if id_site != 0 %} #}
               <tr> 
-                <td><a href="/exports/{{ Site }}">{{ Site }}<a></td>
+                <td><a class="medium success button" href="/exports/{{ Site }}">{{ Site }}<a></td>
                 <td>{{ d_folders[Site]|length }}</td>
                 <td>These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</td>
-                <td><button class="small alert button" type="submit" name="Site" value={{ Site }}>Supprimer</td>
               </tr>
           {#  {% endif %} #}
           {% endfor %}
         </tbody>
       </table>
-    </form>
   </div>
 </div>
 

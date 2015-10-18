@@ -1,40 +1,5 @@
-SiteAAA:
-  abrt:
-    Description: tzerzetsdfdffdssffsdfsgsdfjhgdfhusihdfhqlehfeilfhzfiwshfkjdhf
-    Hostnames:
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
-    Password: pass
-    Receivers:
-    - test@test
-    - test2@test
-    - test3@test
-    - test4@test
-  cupshelpers:
-    Description: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-    Hostnames:
-    - aa
-    Password: aa
-    Receivers:
-    - aa@aa
-SiteAB:
-  abrt:
-    Description: deqfqsf
-    Hostnames:
-    - aa
-    Password: aa
-    Receivers:
-    - aa@aa
-SiteAD:
-  abrt:
-    Description: djshdhufhsijdijafuahsjdia
-    Hostnames:
-    - machine6
-    - machine4
-    Password: pass
-    Receivers:
-    - test@test
-    - test2@test
+Site1: {}
+SiteA: {}
+SiteB: {}
+SiteC: {}
+SiteE: {}

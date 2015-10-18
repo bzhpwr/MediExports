@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os, yaml, uuid, csv
 from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, render_template, flash
@@ -126,6 +127,23 @@ def del_entry(path):
       flash('This folder not exist in list')
     return redirect(url_for('show_exports', path=path))
 
+#@app.route('/exports/<path>/validate')
+#def validation(path):
+#    if not session.get('logged_in'):
+#        abort(401)
+#    Site = path
+    #print(Site)
+    #d_folders = import_datas()
+    #print(type(request.form['Folder']))
+    #if request.form['Folder'] in d_folders[path]:
+    #  del d_folders[path][request.form['Folder']] 
+    #  write_datas(d_folders)
+    #  flash('Entry was successfully delete')
+    #else:
+    #  flash('This folder not exist in list')
+    #return redirect(url_for('show_exports', path=path))
+#    return render_template('validation.html', Site=Site)
+
 ############## Sites
 #@app.route('/select')
 #def select_site():
@@ -228,6 +246,19 @@ def show_sites():
     d_folders = import_datas()
     l_sites = get_sites()
     l_folders = get_list()
+    return render_template('show_sites.html', d_folders=d_folders, l_folders=l_folders, l_sites=l_sites, error=error)
+
+@app.route('/admin')
+def set_sites():
+    error = None
+    if not session.get('logged_in'):
+      #print('no logged user')
+      #return render_template('login.html', error=error)
+      return redirect(url_for('login'))
+    d_folders = import_datas()
+    l_sites = get_sites()
+    l_folders = get_list()
+    flash(u'Je vous préviens encore parceque je suis simpa, Attention!', 'error')
     return render_template('set_sites.html', d_folders=d_folders, l_folders=l_folders, l_sites=l_sites, error=error)
 
 #@app.route('/', defaults={'path': '/'})
@@ -271,9 +302,8 @@ def show_new():
 def show_home():
     error = None
     if not session.get('logged_in'):
-      print('no logged user')
       return render_template('login.html', error=error)
-    return render_template('home.html')
+    return render_template('home.html', error=error )
 
 @app.route('/newlayout')
 def show_newlayout():

@@ -48,7 +48,9 @@
           </dl>
           </fieldset>
         </form>
-        <table class="tableau">
+        <div class="row">
+          <div class="large-12 columns">
+          <table class="tableau">
           <tr>
             <th>Dossier</th>
             {# <th>Mot de passe</th> #}
@@ -58,6 +60,8 @@
             <th>Description</th>
             <th></th>
           </tr>
+          </div>
+          </div>
         <form action="{{ url_for('del_entry', path=path) }}" method=post > 
         {# {% for folder,entry in d_folders[path].iteritems() %} #}
         {% for folder,entry in d_folders[path]|dictsort(True, 'key') %}
