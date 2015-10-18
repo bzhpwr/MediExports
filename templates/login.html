@@ -1,14 +1,33 @@
-{% extends "layout.html" %}
-{% block body %}
-  <h2>Login</h2>
+{# {% extends "layout.html" %} #}
+
+{% extends "foundation/base.html" %}
+
+{% import "foundation/fixes.html" as fixes %}
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Welcome to MediExports</h1>
+  </div>
+</div>
+<div class="row">
+{% endblock head %}
+{% block content %}
+<div class="row">
+  <div class="large-12 medium-8 columns">
   {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
   <form action="{{ url_for('login') }}" method=post>
-    <dl>
-      <dt>Username:
-      <dd><input type=text name=username>
-      <dt>Password:
-      <dd><input type=password name=password>
-      <dd><input type=submit value=Login>
-    </dl>
+  <div class="large-6 medium-6 columns">
+      <label>Utilisateur:
+      <input type=text name=username>
+      <label>Mot de passe:
+      <input type=password name=password>
+      <button type=submit value=Login>Connexion
+</div>
   </form>
-{% endblock %}
+</div>
+</div>
+{% endblock  content %}

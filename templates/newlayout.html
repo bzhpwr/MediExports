@@ -1,0 +1,85 @@
+{% extends "foundation/base.html" %}
+
+{% import "foundation/fixes.html" as fixes %}
+
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+<div class="row">
+<div class="icon-bar five-up">
+  <a class="item">
+    <i class="fi-home"></i>
+    <label>Home</label>
+  </a>
+  <a class="item">
+    <i class="fi-bookmark"></i>
+    <label>Home</label>
+  </a>
+  <a class="item">
+    <i class="fi-info"></i>
+    <label>Info</label>
+  </a>
+  <a class="item">
+    <i class="fi-mail"></i>
+    <label>Mail</label>
+  </a>
+
+ {% if not session.logged_in %}
+  <a class="item" href="{{ url_for('login') }}">
+    <i class="fi-torso"></i>
+    <label>Connexion</label>
+ {% else %}
+  <a class="item" href="{{ url_for('logout') }}">
+    <i class="fi-x"></i>
+    <label>Deconnexion</label>
+ {% endif %}
+  </a>
+</div>
+</div>
+
+<div class="row">
+<nav class="top-bar" data-topbar>
+  <ul class="title-area">
+    <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+  {#
+  <div class="logo">
+    <a href="http://zurb.com/stickers/images/intro-foundation.png"><img src="http://zurb.com/stickers/images/intro-foundation.png" /></a>
+  </div>
+  #}
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="left-buttons">
+      <li class="divider"></li>
+      <li><a href="#">Acceuil</a></li>
+      <li class="divider"></li>
+      <li><a href="{{ url_for('show_entries') }}">Gestions des exports</a></li>
+      <li class="divider"></li>
+      <li><a href="#">Centered des sites</a></li>
+      <li class="divider"></li>
+    </ul>
+    <ul class="right-buttons">
+      <li class="divider"></li>
+      {% if not session.logged_in %}
+        <li><a href="{{ url_for('login') }}">Connexion</a></li>
+      {% else %}
+        <li><a href="{{ url_for('logout') }}">Deconnexion</a></li>
+      {% endif %}
+      <li class="divider"></li>
+    </ul>
+  </section>
+</nav>
+</div>
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Welcome to MediExports</h1>
+    <hr />
+  </div>
+</div>
+{% endblock head %}
+

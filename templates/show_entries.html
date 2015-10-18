@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
-{% block body %}
+{% block content %}
   {% if session.logged_in %}
     {# l_sites.values|reject('/') #}
     {% if path in l_sites.values() and path != '/' %}
+     <div class="row">
+     <div class="large-12 columns">
       <form action="{{ url_for('add_entry', path=path ) }}" method=post class=add-entry>
         {# <h3 class=Site>Site: {{ path }}</h3> #}
         <dl>
@@ -52,36 +54,59 @@
     {# {% endif %} #}
     {# {% if path == '/' %} #}
     {% else %}
-      <form action="{{ url_for('add_site') }}" method=post class=add-entry>
-          <fieldset>
-          <legend>Ajouter un Site:</legend>
-        <dl>
-          <dt>Site: <input type=text maxlength=16 size=16 name=Site multiple required autofocus><input type=submit value=Ajouter >
-        </dl>
-          </fieldset>
-      </form>
-      </br>
-    <form action="{{ url_for('del_site') }}" method=post class=add-entry > 
-    <table class="tableau">
-      <tr>
-          <th>Site</th>
-          <th>Nbr d'exports</th>
-          <th></th>
-      </tr>
-       {# {% for Site in d_folders.keys() %} #}
-       {% for id_site,Site in l_sites|dictsort(True, 'key') %}
-       {% if id_site != 0 %}
-      <tr> 
-        <td><a href="{{ Site }}">{{ Site }}<a></td>
-        <td class=nbr>{{ d_folders[Site]|length }}</td>
-        <td class=ouf><button type="submit" name="Site" value={{ Site }}>ClickMe</td>
-      </tr>
-       {% endif %}
-        {% endfor %}
-    </table>
-        </br>
-    </form>
-    {% endif %}
-    {% endif %}
-{% endblock %}
-  {#{% endif %} #}
+     <div class="row">
+       <div class="large-12 medium-122 columns">
+        <form action="{{ url_for('add_site') }}" method=post >
+            <fieldset>
+            <legend>Ajouter un Site:</legend>
+            <div class="row">
+              <div class="large-6 medium-6 columns">
+                <label>Site: </label>
+                <input type=text maxlength=16 name=Site placeholder="Nom du site" required autofocus>
+              </div>
+              <div class="large-8 medium-6 columns">
+                <label>Description: </label>
+                <input type=text maxlength=100 name=Description placeholder="Description du site">
+              </div>
+              <div class="large-4 medium-2 columns">
+                <button class="small round button" type='submit'>Ajouter
+              </div>
+            </div>
+            </fieldset>
+        </form>
+      </div>
+     </div>
+     <div class="row">
+       <div class="large-12 columns">
+        <form action="{{ url_for('del_site') }}" method=post > 
+        <table >
+       <div class="large-12 columns">
+            <thead>
+              <tr>
+                <th width="200">Site</th>
+                <th width="50">Nombre d'export</th>
+                <th>Description</th>
+                <th width="150"></th>
+              </tr>
+            </thead>
+           <tbody>
+             {% for id_site,Site in l_sites|dictsort(True, 'key') %}
+               {% if id_site != 0 %}
+                <tr> 
+                  <td><a href="{{ Site }}">{{ Site }}<a></td>
+                  <td>{{ d_folders[Site]|length }}</td>
+                  <td>blablabla</td>
+                  <td><button type="submit" name="Site" value={{ Site }}>Supprimer</td>
+                </tr>
+               {% endif %}
+             {% endfor %}
+           </tbody>
+      </div>
+        </table>
+        </form>
+   {% endif %}
+      </div>
+    </div>
+ {% endif %}
+
+{% endblock content %}

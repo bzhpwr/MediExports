@@ -1,31 +1,7 @@
-SiteAA:
-  bin:
+SiteAAA:
+  abrt:
+    Description: tzerzetsdfdffdssffsdfsgsdfjhgdfhusihdfhqlehfeilfhzfiwshfkjdhf
     Hostnames:
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
-    Password: pass
-    Receivers:
-    - test@test.fr
-  games:
-    Hostnames:
-    - machine6
-    - machine4
-    Password: pass
-    Receivers:
-    - test@test
-    - test2@test
-    - test3@test
-    - test4@test
-  include:
-    Hostnames:
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
     - machine1
     - machine2
     - machine3
@@ -37,24 +13,24 @@ SiteAA:
     - test2@test
     - test3@test
     - test4@test
-  src:
+  cupshelpers:
+    Description: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
     Hostnames:
-    - machine6
-    - machine4
-    Password: pass
+    - aa
+    Password: aa
     Receivers:
-    - moi@local
-  tmp:
+    - aa@aa
+SiteAB:
+  abrt:
+    Description: deqfqsf
     Hostnames:
-    - machine6
-    - machine4
-    Password: pass
+    - aa
+    Password: aa
     Receivers:
-    - test@test
-    - test2@test
-SiteAB: {}
+    - aa@aa
 SiteAD:
-  bin:
+  abrt:
+    Description: djshdhufhsijdijafuahsjdia
     Hostnames:
     - machine6
     - machine4
@@ -62,35 +38,3 @@ SiteAD:
     Receivers:
     - test@test
     - test2@test
-    - test3@test
-    - test4@test
-  games:
-    Hostnames:
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
-    Password: pass
-    Receivers:
-    - test@test
-    - test2@test
-    - test3@test
-    - test4@test
-  include:
-    Hostnames:
-    - machine1
-    - machine2
-    - machine3
-    - machine4
-    - machine5
-    Password: pass
-    Receivers:
-    - test@test
-    - test2@test
-SiteE: {}

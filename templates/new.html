@@ -1,0 +1,275 @@
+{% extends "foundation/base.html" %}
+
+{% import "foundation/fixes.html" as fixes %}
+
+
+{% block head %}
+{{super()}}
+{{fixes.ie8()}}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
+
+{% endblock head %}
+
+{% block content %}
+
+<div class="row">
+  <div class="large-12 columns">
+    <h1>Welcome to MediExports</h1>
+  </div>
+</div>
+<hr />
+<div class="row">
+  <div class="large-12 columns">
+    <div class="panel">
+      <h3>We&rsquo;re stoked you want to try Foundation! </h3>
+      <p>To get going, this file (index.html) includes some basic styles you can modify, play around with, or totally destroy to get going.</p>
+      <p>Once you've exhausted the fun in this document, you should check out:</p>
+      <div class="row">
+        <div class="large-4 medium-4 columns">
+          <p><a href="http://foundation.zurb.com/docs">Foundation Documentation</a><br />Everything you need to know about using the framework.</p>
+        </div>
+        <div class="large-4 medium-4 columns">
+          <p><a href="http://zurb.com/university/code-skills">Foundation Code Skills</a><br />These online courses offer you a chance to better understand how Foundation works and how you can master it to create awesome projects.</p>
+        </div>
+        <div class="large-4 medium-4 columns">
+          <p><a href="http://foundation.zurb.com/forum">Foundation Forum</a><br />Join the Foundation community to ask a question or show off your knowlege.</p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-4 medium-4 medium-push-2 columns">
+          <p><a href="http://github.com/zurb/foundation">Foundation on Github</a><br />Latest code, issue reports, feature requests and more.</p>
+        </div>
+        <div class="large-4 medium-4 medium-pull-2 columns">
+          <p><a href="https://twitter.com/ZURBfoundation">@zurbfoundation</a><br />Ping us on Twitter if you have questions. When you build something with this we'd love to see it (and send you a totally boss sticker).</p>
+        </div>        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{#
+<ul class="tabs vertical" data-tab>
+  <li class="tab-title active"><a href="#panel11">Tab 1</a></li>
+  <li class="tab-title"><a href="#panel21">Tab 2</a></li>
+  <li class="tab-title"><a href="#panel31">Tab 3</a></li>
+  <li class="tab-title"><a href="#panel41">Tab 4</a></li>
+</ul>
+#}
+<div class="row">
+  <div class="large-12 columns">
+<ul class="tabs" data-tab role="tablist">
+  {# <li class="tab-title" role="presentation"><a href="{{ url_for('show_entries') }}" role="tab" tabindex="0" aria-selected="false" aria-controls="panel2-5">Gestion des sites</a></li> #}
+  {% for id_site,site in l_sites|dictsort(True, 'value') %}
+  {% if id_site != 0 %}
+  <li class="tab-title" role="presentation"><a href="#panel-{{ site }}" role="tab" tabindex="0" aria-selected="false" aria-controls="panel-{{ site }}">{{ site }}</a></li>
+  {% endif %}
+  {% endfor %}
+</ul>
+  </div>
+</div>
+<hr />
+
+<div class="tabs-content">
+  {% for id_site,site in l_sites|dictsort(True, 'value') %}
+  {% if id_site != 0 %}
+  <section role="tabpanel" aria-hidden="false" class="content active" id="panel-{{ site }}">
+    <h2>{{ site }} goes here...</h2>
+  </section>
+  {% endif %}
+  {% endfor %}
+</div>
+
+<div class="row">
+  <div class="large-8 medium-8 columns">
+    {#
+    <h5>Here&rsquo;s your basic grid:</h5>
+
+    <div class="row">
+      <div class="large-12 columns">
+        <div class="callout panel">
+          <p><strong>Mon titre.</strong> Ceci est mon texte</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-6 medium-6 columns">
+        <div class="callout panel">
+          <p>Six columns</p>
+        </div>
+      </div>
+      <div class="large-6 medium-6 columns">
+        <div class="callout panel">
+          <p>Six columns</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-4 medium-4 small-4 columns">
+        <div class="callout panel">
+          <p>Four columns</p>
+        </div>
+      </div>
+      <div class="large-4 medium-4 small-4 columns">
+        <div class="callout panel">
+          <p>Four columns</p>
+        </div>
+      </div>
+      <div class="large-4 medium-4 small-4 columns">
+        <div class="callout panel">
+          <p>Four columns</p>
+        </div>
+      </div>
+    </div>
+    #}
+            
+    <form>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Dossier</label>
+          <select>
+            <option value="husker">Husker</option>
+            <option value="starbuck">Starbuck</option>
+            <option value="hotdog">Hot Dog</option>
+            <option value="apollo">Apollo</option>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 columns">
+          <label>Input Label</label>
+          <input type="text" placeholder="large-8.columns" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 medium-8 columns">
+          <label>Input Label</label>
+          <input type="text" placeholder="large-8.columns" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 medium-8 columns">
+          <label>Input Label</label>
+          <input type="text" placeholder="large-8.columns" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="large-12 medium-8 columns">
+          <div class="row collapse">
+            <label>Input Label</label>
+            <div class="small-9 columns">
+              <input type="text" placeholder="small-9.columns" />
+            </div>
+            <div class="small-3 columns">
+              <span class="postfix">.com</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {#
+      <div class="row">
+        <div class="large-6 medium-6 columns">
+          <label>Choose Your Favorite</label>
+          <input type="radio" name="pokemon" value="Red" id="pokemonRed"><label for="pokemonRed">Radio 1</label>
+          <input type="radio" name="pokemon" value="Blue" id="pokemonBlue"><label for="pokemonBlue">Radio 2</label>
+        </div>
+        <div class="large-6 medium-6 columns">
+          <label>Check these out</label>
+          <input id="checkbox1" type="checkbox"><label for="checkbox1">Checkbox 1</label>
+          <input id="checkbox2" type="checkbox"><label for="checkbox2">Checkbox 2</label>
+        </div>
+      </div>
+      #}
+      <div class="row">
+        <div class="large-12 columns" style="float: left;">
+          <label>Textarea Label</label>
+          <textarea placeholder="small-12.columns"></textarea>
+        </div>
+      </div>
+    </form>
+  </div>     
+ 
+  <div class="large-4 medium-4 columns">
+    {# <h5>Try one of these buttons:</h5> #}
+    <p><a href="#" class="small button">Simple Button</a><br/>
+    <a href="#" class="small radius button">Radius Button</a><br/>
+    <a href="#" class="small round button">Round Button</a><br/>            
+    <a href="#" class="medium success button">Success Btn</a><br/>
+    <a href="#" class="medium alert button">Alert Btn</a><br/>
+    <a href="#" class="medium secondary button">Secondary Btn</a></p>           
+    {# <div class="panel">
+      <h5>So many components, girl!</h5>
+      <p>A whole kitchen sink of goodies comes with Foundation. Check out the docs to see them all, along with details on making them your own.</p>
+      <a href="http://foundation.zurb.com/docs/" class="small button">Go to Foundation Docs</a>          
+    </div>
+    #}
+  </div>
+  
+</div>
+<div class="row">
+  <div class="large-12 medium-8 columns">
+<table>
+  <thead>
+    <tr>
+      <th width="200">Table Header</th>
+      <th>Table Header</th>
+      <th width="200">Table Header</th>
+      <th width="200">Table Header</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Content Goes Here</td>
+      <td>This is longer content Donec id elit non mi porta gravida at eget metus.</td>
+      <td>Content Goes Here</td>
+      <td>Content Goes Here</td>
+    </tr>
+    <tr>
+      <td>Content Goes Here</td>
+      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+      <td>Content Goes Here</td>
+      <td>Content Goes Here</td>
+    </tr>
+    <tr>
+      <td>Content Goes Here</td>
+      <td>This is longer Content Goes Here Donec id elit non mi porta gravida at eget metus.</td>
+      <td>Content Goes Here</td>
+      <td>Content Goes Here</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="row">
+  <div class="large-12 medium-8 columns">
+<a href="#" data-reveal-id="firstModal" class="radius button">Modal in a modal&hellip;</a>
+<a href="#" data-reveal-id="myModal">Click Me For A Modal</a>
+
+<div id="myModal" class="reveal-modal" data-reveal aria-labelledby="modalTitle" aria-hidden="true" role="dialog">
+  <h2 id="modalTitle">Awesome. I have it.</h2>
+  <p class="lead">Your couch.  It is mine.</p>
+  <p>I'm a cool paragraph that lives inside of an even cooler modal. Wins!</p>
+  <a href="#" class="medium alert button">Alert Btn</a>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a> 
+</div>
+
+<div id="firstModal" class="reveal-modal" data-reveal aria-labelledby="firstModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="firstModalTitle">This is a modal.</h2>
+  <p>Reveal makes these very easy to summon and dismiss. The close button is simply an anchor with a unicode character icon and a class of <code>close-reveal-modal</code>. Clicking anywhere outside the modal will also dismiss it.</p>
+  <p>Finally, if your modal summons another Reveal modal, the plugin will handle that for you gracefully.</p>
+  <p><a href="#" class="secondary button">Second Modal...</a></p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+<div id="secondModal" class="reveal-modal" data-reveal aria-labelledby="secondModalTitle" aria-hidden="true" role="dialog">
+  <h2 id="secondModalTitle">This is a second modal.</h2>
+  <p>See? It just slides into place after the other first modal. Very handy when you need subsequent dialogs, or when a modal option impacts or requires another decision.</p>
+  <a class="close-reveal-modal" aria-label="Close">&#215;</a>
+</div>
+
+
+</div>
+</div>
+{% endblock content %}

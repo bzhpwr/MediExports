@@ -1,0 +1,81 @@
+{% extends "layout.html" %}
+{% block content %}
+{# {% if path in l_sites.values() and path != '/' %} #}
+    <div class="row">
+      <div class="large-12 columns">
+        <dl class="sub-nav">
+          {% for id_site,site in l_sites|dictsort(True, 'value') %}
+            {% if site == path %}
+              <dd class="active"><a href="/exports/{{ site }}" >{{ site }}</a></dd>
+            {% else %}
+              <dd><a href="/exports/{{ site }}" >{{ site }}</a></dd>
+            {% endif %}
+          {% endfor %} 
+        </dl>
+      </div>
+    </div>
+    <div class="row">
+      <div class="large-12 columns">
+        <form action="{{ url_for('add_entry', path=path ) }}" method=post class=add-entry>
+          {# <h3 class=Site>Site: {{ path }}</h3> #}
+          <dl>
+            <fieldset>
+            <legend>Ajouter un export:</legend>
+            <label>Dossier: 
+            <select name="Folder" autofocus>
+              {% for line in l_folders %}
+                <option value="{{ line }}">{{ line }}</option>
+              {% endfor %}
+            </select>
+            <div class="row">
+            <div class="large-6 columns">
+              <label>Mot de passe:</label> 
+              <input type=password maxlength=16 name=Password required>
+            </div>
+            <div class="large-6 columns">
+              <label>Confirmation du mot de pass:</label>
+              <input type=password tsize=16 maxlength=16 name=PasswordConfirm required>
+            </div>
+            </div>
+            <label>Destination(s):
+            <input type=text maxlength=255 size=30 name=Hostnames class=form-control placeholder="Separer par des virgules" multiple required>
+            <label>Email(s): </label>
+            <input type=email maxlength=255 size=50 name=Receivers class=form-control placeholder="Separer par des virgules" multiple required>
+            <label>Description: </label>
+            <textarea maxlength=100 name=Description placeholder="Description du site"></textarea>
+
+            <dt><button class="small round button" type=submit value=Ajouter>Ajouter
+          </dl>
+          </fieldset>
+        </form>
+        <table class="tableau">
+          <tr>
+            <th>Dossier</th>
+            {# <th>Mot de passe</th> #}
+            <th>Destinations</th>
+            <th>Nbr</th>
+            <th>Utilisateur</th>
+            <th>Description</th>
+            <th></th>
+          </tr>
+        <form action="{{ url_for('del_entry', path=path) }}" method=post > 
+        {# {% for folder,entry in d_folders[path].iteritems() %} #}
+        {% for folder,entry in d_folders[path]|dictsort(True, 'key') %}
+        {% if entry %}
+          <tr>
+            <td>{{ folder }}</td> 
+            {# <td>{{ entry.Password }}</td> #}
+            <td>{{ entry.Hostnames }}</td>
+            <td class=nbr>{{ entry.Hostnames|length }}</td>
+            <td>{{ entry.Receivers }}</td>
+            <td>{{ entry.Description }}</td>
+            <td><button class="small alert button" type="submit" name="Folder" value={{ folder }}>Supprimer</td>
+          </tr>
+        {% endif %}
+        {% endfor %}
+        </table>
+        </form>
+      </div>
+    </div>
+{# {% endif %} #}
+{% endblock content %}
